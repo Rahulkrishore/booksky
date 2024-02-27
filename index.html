@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>booksky</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <section id="about"  class=bg-light;>
+        <div class="container">
+            <!-- <h2  class="text-center py-3">About</h2>  -->
+            <div class="row align-items-center">
+               
+                <div class="col-lg-4 spacing" >
+                    <div class="book-container">
+                        <h2>Rich Dad poor dad</h2>
+                        <h5>Robert</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo omnis nulla vero nesciunt dolores eligendi fugiat, aliquam inventore dolor architecto soluta veniam magnam quas odit molestias nobis tempore impedit dolorem.</p>
+                        <button onclick="deletebook(event)">delete</button>
+                    </div> 
+                </div>
+                <div class="col-lg-2">
+                    <div class="popup-overlay"></div> 
+                    <div class="popup-box">
+                        <form>
+                            <h1>Add Book</h1>
+                            <input type="text" placeholder="title" id="book-title-input">
+                            <input type="text" placeholder="author" id="book-author-input">
+                            <textarea name="textarea" placeholder="description" id="book-textarea-input"></textarea>
+                            <button id="Add-book">Add</button>
+                            <button id="cancel-popup">Cancel</button>
+                        </form>
+                    </div>
+                
+                    <button class="add-button" id="Add-popup-button">*</button>
+                  
+             
+                    
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        //selecting popup box popup overlay
+var popupoverlay=document.querySelector(".popup-overlay")
+var popupbox=document.querySelector(".popup-box")
+var addpopupbutton =document.getElementById("Add-popup-button")
+
+addpopupbutton.addEventListener("click" ,function() {
+    popupoverlay.style.display="block"
+    popupbox.style.display="block"
+
+})
+
+//preventdefault function cancel
+
+var cancelpop=document.getElementById("cancel-popup")
+
+cancelpop.addEventListener("click",function(event){
+    event.preventDefault()
+    popupoverlay.style.display="none"
+    popupbox.style.display="none"
+})
+
+//select container , Add-book,box-title-input,box-author-input,box-textarea-input
+
+var container=document.querySelector(".container")
+var addbook=document.getElementById("Add-book")
+var booktitleinput=document.getElementById("book-title-input")
+var bookauthorinput=document.getElementById("book-author-input")
+var booktextareainput=document.getElementById("book-textarea-input")
+
+addbook.addEventListener("click",function(event){
+        event.preventDefault()
+        var div=document.createElement("div")
+        div.setAttribute("class","book-container")
+        div.innerHTML=`<h2>${booktitleinput.value}</h2>
+        <h5>${bookauthorinput.value}</h5>
+        <p>${booktextareainput.value}</p>
+        <button onclick="deletebook(event)">delete</button>`
+        container.append(div)
+        popupoverlay.style.display="none"
+        popupbox.style.display="none"
+})
+
+// delete key use to remove
+
+function deletebook(event){
+    event.target.parentElement.remove()
+}
+    </script>
+
+
+
+    
+  
+ 
+</body>
+</html>
